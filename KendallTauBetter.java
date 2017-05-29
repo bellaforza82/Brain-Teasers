@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-//Kendall Tau Distance computer, still a work in progress
+//Replaced triple forloop that ranked pairs with a double forloop, Integers[] replaced with ints[], fewer methods, better, correct output.
 public class KendallTauBetter {
 
     static Scanner scan = new Scanner(System.in);
