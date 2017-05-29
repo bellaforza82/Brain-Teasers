@@ -12,7 +12,7 @@ public class KendallTauBetter {
     static int[] aPairsAndDistance = new int[a.length * a.length * 3];
     static int[] bPairsAndDistance = new int[a.length * a.length * 3];
     //Final Array of mismatch pairs
-    static int[] pairs = new int[50];
+    static int[] pairs = new int[a.length * a.length];
     //Variables to count distance
 
 
@@ -48,14 +48,16 @@ public class KendallTauBetter {
     public static void findPairs(int[] a, int[] b){
         int count = 0;
         for (int i = 0; i < a.length; i+=3) {
-            if (a[i] == 0 && a[i+1] == 0){
-                break;
-            }
-            if (a[i] == b[i+1] && a[i+1] == b[i]){
-                if (a[i + 2] >= 1 && b[i + 2] >= 1 || a[i + 2] <= 0 && b[i+2] <= 0) {
-                    pairs[count] = a[i];
-                    pairs[count+1] = a[i+1];
-                    count+=2;
+            for (int j = 0; j < a.length; j+=3) {
+                if (a[i] == 0 && a[i+1] == 0){
+                    break;
+                }
+                if (a[i] == b[j+1] && a[i+1] == b[j]){
+                    if (a[i + 2] >= 1 && b[j + 2] >= 1 || a[i + 2] <= 0 && b[j+2] <= 0) {
+                        pairs[count] = a[i];
+                        pairs[count+1] = a[i+1];
+                        count+=2;
+                    }
                 }
             }
         }
@@ -67,12 +69,7 @@ public class KendallTauBetter {
             if (a[i] == 0 && a[i+1] == 0){
                 break;
             }
-            if(a[i] == a[i+3] && a[i+1] == a[i+2]){
-                System.out.print(a[i] + " - " + a[i+1] + " ");
-                i+=2;
-            }else {
-                System.out.print(a[i] + " - " + a[i + 1] + " ");
-            }
+            System.out.print(a[i] + " - " + a[i + 1] + " ");
         }
     }
     public static void main(String[] args){
